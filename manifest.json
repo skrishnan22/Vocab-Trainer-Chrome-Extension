@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "vocab-trainer",
+  "description": "Store new words encountered while browsing and later revisit them in form of flash cards.",
+  "version": "1.0",
+  "icons": {
+           "48": "icons/icon48.png",
+           "128":"icons/icon128.png",
+            "16":"icons/icon16.png"
+  },
+
+  "permissions": [
+    "tabs", "<all_urls>","storage"
+],
+
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+      "default_popup":"choice.html"
+      } ,
+    
+    "background":{
+        "scripts":["popup.js","revise.js","flash_create.js"]
+    },
+    
+    "content_scripts": [
+     {
+       "matches": ["http://www.oxforddictionaries.com/definition/english/*"],
+       "js": ["logic.js"]
+         
+     },
+        {
+            "matches": ["http://www.oxforddictionaries.com/"],
+            "css" : ["revise.css"]
+        }
+   ]
+}
